@@ -1,0 +1,21 @@
+.header{
+    text-align: center;
+}
+
+.items{
+    text-align: center;
+    margin: auto;
+    padding-top: 2%;
+}
+
+ul, li{
+    background-color: inherit;
+}
+
+.col{
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+.bottom-border{
+    border-bottom: 2px solid gray;
+}

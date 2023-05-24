@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="background">
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-center mb-5">
+                <h2 class="mt-3">Place Your Orders Here</h2>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <form>
+                    <div class="row">
+                        <h3 style="display :inline; margin-right: 1rem" class="col">Item Type</h3>
+                        <div class="dropdown col" style="display: inline">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="typebutton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" (click)="selectType('Cake')">Cake</a>
+                                <a class="dropdown-item" (click)="selectType('Cupcakes')">Cupcakes</a>
+                                <a class="dropdown-item" (click)="selectType('Macarons')">Macarons</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 class="col" style="display :inline; margin-right: 1rem">Quantity</h3>
+                    <div class="dropdown col" style="display: inline">
+                        <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button" id="quantitybutton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" (click)="selectQuantity('1')">1</a>
+                            <a class="dropdown-item" (click)="selectQuantity('2')">2</a>
+                            <a class="dropdown-item" (click)="selectQuantity('3')">3</a>
+                            <a class="dropdown-item" (click)="selectQuantity('4')">4</a>
+                            <a class="dropdown-item" (click)="selectQuantity('8')">8</a>
+                            <a class="dropdown-item" (click)="selectQuantity('12')">12</a>
+                            <a class="dropdown-item" (click)="selectQuantity('16')">16</a>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!--Empty div for spacing-->
+                    <div></div>
+                    <h3>Additional Comments</h3>
+                    <span class="input-field" contenteditable="true">Additional Comments here</span>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

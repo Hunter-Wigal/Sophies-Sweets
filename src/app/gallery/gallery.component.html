@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="background">
+    <div class="container">
+        <div class="row header">
+            <h1 class=" mt-3">Gallery</h1>
+        </div>
+        <div class="row mt-3">
+            <h3>Macarons</h3>
+            <hr>
+        </div>
+        <div class="row">
+            <div *ngFor="let x of macaron_cards" class="col mt-3">
+                <app-gallery-card header={{x.header}} image={{x.image}} caption={{x.caption}}>
+                </app-gallery-card>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <h3>Cupcakes</h3>
+            <hr>
+        </div>
+        <div class="row">
+            <div *ngFor="let x of cupcake_cards" class="col mt-3">
+                <app-gallery-card header={{x.header}} image={{x.image}} caption={{x.caption}}>
+                </app-gallery-card>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <h3>Cakes</h3>
+            <hr>
+        </div>
+        <div class="row">
+            <div *ngFor="let x of cake_cards" class="col mt-3">
+                <app-gallery-card header={{x.header}} image={{x.image}} caption={{x.caption}}>
+                </app-gallery-card>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
