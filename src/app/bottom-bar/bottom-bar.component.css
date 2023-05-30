@@ -7,3 +7,8 @@
     bottom: 0;
     padding-top: 0.8rem;
 }
+
+.small{
+    margin-top: 1rem;
+    font-size: 12px;
+}
