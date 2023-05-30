@@ -1,28 +1,33 @@
-import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { Title } from '@angular/platform-browser';
-import { NgForm } from '@angular/forms';
-=======
-<<<<<<< HEAD
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import {Router} from '@angular/router';
-=======
->>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
->>>>>>> 38166ff57989cf252fc832777fafc2d946a49696
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
-<<<<<<< HEAD
-
 
 export class AdminPageComponent {
-  constructor(private as: AuthService, private titleService: Title, private router: Router,){
+  email = "";
+  password = "";
+  loggedIn: boolean;
+
+  constructor(private as: AuthService, private titleService: Title, private router: Router, private fb: FormBuilder){
     this.titleService.setTitle("Admin");
+    this.loggedIn = false;
+  }
+
+  ngOnInit(){
+    this.loggedIn = (this.as.loggedIn() != null);
+
+    if(this.loggedIn){
+      this.router.navigate(['/orders']);
+    }
   }
 
   login(form: NgForm){
@@ -34,17 +39,6 @@ export class AdminPageComponent {
       window.alert("Successfully logged in");
       this.router.navigate(['/orders']);
     }
-
-  }
-=======
-export class AdminPageComponent {
->>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
-
-  constructor(private titleService: Title) {
-    this.titleService.setTitle("Admin Page");
-  }
-
-  async logIn(form: NgForm){
 
   }
 }

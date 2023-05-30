@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-h1{
-    text-align: center;
-}
-
-.container{
-    margin-top: 2rem;
-    width: 40%;
-}
-
-input{
-    margin: auto;
-}
-=======
 form{
     padding-top: 10vh;
     padding-inline: 25%;
@@ -19,4 +5,3 @@ form{
 h1{
     text-align: center;
 }
->>>>>>> 38166ff57989cf252fc832777fafc2d946a49696

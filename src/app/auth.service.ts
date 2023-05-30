@@ -37,4 +37,8 @@ export class AuthService {
                 return null;
             });
     }
+
+    public async loggedIn(){
+        return this.auth.currentUser;
+    }
 }

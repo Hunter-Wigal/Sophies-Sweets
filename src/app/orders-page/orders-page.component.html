@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body class="background">
     <h1>Current Orders</h1>
-
     <div class="container">
-        
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Cake Flavor <i>(If applicable)</i></th>
+                        <th scope="col">Icing</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row" *ngFor="let order of orders">
+                        <td>{{order.name}}</td>
+                        <td>{{order.email}}</td>
+                        <td>{{order.phone}}</td>
+                        <td>{{order.type}}</td>
+                        <td>{{order.quantity}}</td>
+                        <td>{{order.cake}}</td>
+                        <td>{{order.icing}}</td>
+                        <td>{{order.comments}}</td>
+                    <tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </body>
+
 </html>

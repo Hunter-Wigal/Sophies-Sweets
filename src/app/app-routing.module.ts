@@ -6,10 +6,7 @@ import { MenuComponent } from './menu/menu.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-<<<<<<< HEAD
-=======
 import { OrdersPageComponent } from './orders-page/orders-page.component';
->>>>>>> 38166ff57989cf252fc832777fafc2d946a49696
 
 const routes: Routes = [
   {
@@ -35,13 +32,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent
-<<<<<<< HEAD
-=======
   },
   {
     path: 'orders',
     component: OrdersPageComponent
->>>>>>> 38166ff57989cf252fc832777fafc2d946a49696
   }
 ];
 
