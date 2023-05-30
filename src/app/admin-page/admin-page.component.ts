@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import {Router} from '@angular/router';
+=======
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
+<<<<<<< HEAD
 
 
 export class AdminPageComponent {
@@ -27,5 +31,8 @@ export class AdminPageComponent {
     }
 
   }
+=======
+export class AdminPageComponent {
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 
 }

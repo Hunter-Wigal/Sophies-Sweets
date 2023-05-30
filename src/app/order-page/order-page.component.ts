@@ -1,9 +1,14 @@
 import { Component, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { OrderModel } from './order.model';
+<<<<<<< HEAD
 import { Firestore, getFirestore } from '@firebase/firestore';
 import { NgForm } from '@angular/forms';
 import { FilesService } from '../files.service';
+=======
+import { FilesService } from '../files.service';
+import { NgForm } from '@angular/forms';
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 
 @Component({
   selector: 'app-order-page',
@@ -13,15 +18,25 @@ import { FilesService } from '../files.service';
 
 //@Injectable({ providedIn: 'root' })
 export class OrderPageComponent {
+<<<<<<< HEAD
   constructor(private titleService: Title, private fs: FilesService) {
     this.titleService.setTitle("How to Order");
 
+=======
+  validName: boolean;
+  validEmail: boolean;
+
+  constructor(private titleService: Title, private fs: FilesService) {
+    this.titleService.setTitle("How to Order");
+    this.validName = true;
+    this.validEmail = true;
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
   }
 
   sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   selectType(type: string){
-    const button = document.getElementById("typebutton");
+    const button = document.getElementById("typeButton");
 
     if(button){
       button.innerHTML = type;
@@ -29,7 +44,7 @@ export class OrderPageComponent {
   }
 
   selectQuantity(quantity: string){
-    const button = document.getElementById("quantitybutton");
+    const button = document.getElementById("quantityButton");
 
     if(button){
       button.innerHTML = quantity;
@@ -37,7 +52,11 @@ export class OrderPageComponent {
   }
 
   selectCake(cake: string){
+<<<<<<< HEAD
     const button = document.getElementById("cakebutton");
+=======
+    const button = document.getElementById("cakeButton");
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 
     if(button){
       button.innerHTML = cake;
@@ -45,13 +64,18 @@ export class OrderPageComponent {
   }
 
   selectIcing(icing: string){
+<<<<<<< HEAD
     const button = document.getElementById("icingbutton");
+=======
+    const button = document.getElementById("icingButton");
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 
     if(button){
       button.innerHTML = icing;
     }
   }
 
+<<<<<<< HEAD
   async addOrder(orderForm: NgForm){
     let name = orderForm.value.name;
     let email = orderForm.value.email;
@@ -83,5 +107,67 @@ export class OrderPageComponent {
 
     window.location.reload();
   }
+=======
+  async addOrder(form: NgForm){
+    const typeSelect = document.getElementById("typeButton");
+    const quantitySelect = document.getElementById("quantityButton");
+    const cakeSelect = document.getElementById("cakeButton");
+    const icingSelect = document.getElementById("icingButton");
+    const commentsSelect = document.getElementById("comments");
+
+    let type= "";
+    let quantity = "";
+    let cakeFlavor = "";
+    let icing = "";
+    let comments = "";
+
+    if(typeSelect && quantitySelect && cakeSelect && icingSelect && commentsSelect){
+      type = typeSelect.innerHTML;
+      quantity = quantitySelect.innerHTML;
+      cakeFlavor = cakeSelect.innerHTML;
+      icing = icingSelect.innerHTML;
+      comments = commentsSelect.innerHTML;
+    }
+    else{
+      window.alert("Error with form");
+      return;
+    }
+
+    const name: string = form.value.name;
+    const email: string = form.value.email;
+
+    if(!name || name.length < 5){
+      this.validName = false;
+      return;
+    }
+    else{
+      this.validName = true;
+    }
+
+    if(!email || email.search("@") < 1){
+      this.validEmail = false;
+      return;
+    }
+    else{
+      this.validEmail = true;
+    }
+
+    const order = new OrderModel(form.value.name, form.value.email, form.value.phone, type, quantity, cakeFlavor, icing, 
+      comments);
+    
+    const success = await this.fs.addOrder(order);
+
+    if(success != null){
+      window.alert("Successfully added order");
+      console.log(success);
+      // window.location.reload();
+      
+    }
+    else{
+      window.alert("Error adding document");
+    }
+  }
+
+>>>>>>> 356fef51b51a9e290aca76d6c9367a42dadb6dc0
 }
 
