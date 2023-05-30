@@ -3,10 +3,13 @@ import { initializeApp } from "firebase/app";
 //import "firebase/storage";
 import { FirebaseStorage, StorageReference, getStorage, list, listAll, ref } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
+import { Firestore, addDoc, collection, getFirestore } from "firebase/firestore";
+import { OrderModel } from "./order-page/order.model";
 
 @Injectable({ providedIn: 'root' })
 export class FilesService {
     storage: FirebaseStorage;
+    db: Firestore;
 
     constructor() {
 
@@ -24,6 +27,7 @@ export class FilesService {
           const app = initializeApp(firebaseConfig);
 
           this.storage = getStorage(app);
+          this.db = getFirestore(app);
     }
 
     public async getMacaronImages(){
@@ -48,6 +52,28 @@ export class FilesService {
 
         return cakeRefs;
 
+    }
+
+    public async addOrder(order: OrderModel){
+        try {
+            const docRef = await addDoc(collection(this.db, "Orders"), {
+              name: order.name,
+              email: order.email,
+              phone: order.phoneNumber,
+              type: order.orderType,
+              quantity: order.quantity,
+              flavor: order.cakeFlavor,
+              icing: order.icingFlavor,
+              comments: order.addComments
+            });
+            console.log("Document written");
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
+
+    public async getOrders(){
+      const orders = [];
     }
 
 }

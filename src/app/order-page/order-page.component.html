@@ -17,15 +17,27 @@
         </div>
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <form>
+                <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm)" id="orderform">
                     <div class="row">
-                        <h3 style="display :inline; margin-right: 1rem" class="col">Item Type</h3>
-                        <div class="dropdown col" style="display: inline">
+                        <h3>Name</h3>
+                        <input type="name" placeholder="Name" ngModel name="name">
+                    </div>
+                    <div class="row">
+                        <h3>Email Address</h3>
+                        <input type="email" placeholder="Email" ngModel name="email">
+                    </div>
+                    <div class="row">
+                        <h3>Phone Number <i>(optional)</i></h3>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel name="phone">
+                    </div>
+                    <div class="row">
+                        <h3 class="col">Item Type</h3>
+                        <div class="dropdown col">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="typebutton"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Select
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="typebutton">
                                 <a class="dropdown-item" (click)="selectType('Cake')">Cake</a>
                                 <a class="dropdown-item" (click)="selectType('Cupcakes')">Cupcakes</a>
                                 <a class="dropdown-item" (click)="selectType('Macarons')">Macarons</a>
@@ -33,30 +45,64 @@
                         </div>
                     </div>
                     <div class="row">
-                        <h3 class="col" style="display :inline; margin-right: 1rem">Quantity</h3>
-                    <div class="dropdown col" style="display: inline">
-                        <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button" id="quantitybutton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Select
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" (click)="selectQuantity('1')">1</a>
-                            <a class="dropdown-item" (click)="selectQuantity('2')">2</a>
-                            <a class="dropdown-item" (click)="selectQuantity('3')">3</a>
-                            <a class="dropdown-item" (click)="selectQuantity('4')">4</a>
-                            <a class="dropdown-item" (click)="selectQuantity('8')">8</a>
-                            <a class="dropdown-item" (click)="selectQuantity('12')">12</a>
-                            <a class="dropdown-item" (click)="selectQuantity('16')">16</a>
+                        <h3 class="col">Quantity</h3>
+                        <div class="dropdown col">
+                            <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button"
+                                id="quantitybutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" (click)="selectQuantity('1')">1</a>
+                                <a class="dropdown-item" (click)="selectQuantity('2')">2</a>
+                                <a class="dropdown-item" (click)="selectQuantity('3')">3</a>
+                                <a class="dropdown-item" (click)="selectQuantity('4')">4</a>
+                                <a class="dropdown-item" (click)="selectQuantity('8')">8</a>
+                                <a class="dropdown-item" (click)="selectQuantity('12')">12</a>
+                                <a class="dropdown-item" (click)="selectQuantity('16')">16</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <h3 class="col">Cake Flavor (If applicable)</h3>
+                        <div class="dropdown col">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="cakebutton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="cakebutton">
+                                <a class="dropdown-item" (click)="selectCake('Vanilla')">Vanilla</a>
+                                <a class="dropdown-item" (click)="selectCake('Chocolate')">Chocolate</a>
+                                <a class="dropdown-item" (click)="selectCake('Lemon')">Lemon</a>
+                                <a class="dropdown-item" (click)="selectCake('Red Velvet')">Red Velvet</a>
+                            </div>
+                        </div>
                     </div>
-                    
+                    <div class="row">
+                        <h3 class="col">Icing Flavor</h3>
+                        <div class="dropdown col">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="icingbutton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="icingbutton">
+                                <a class="dropdown-item" (click)="selectIcing('Vanilla')">Vanilla</a>
+                                <a class="dropdown-item" (click)="selectIcing('Chocolate')">Chocolate</a>
+                                <a class="dropdown-item" (click)="selectIcing('Lemon')">Lemon</a>
+                                <a class="dropdown-item" (click)="selectIcing('Peanut Butter')">Peanut Butter</a>
+                                <a class="dropdown-item" (click)="selectIcing('Caramel')">Caramel</a>
+                                <a class="dropdown-item" (click)="selectIcing('Cookies and Cream')">Cookies and
+                                    Cream</a>
+                            </div>
+                        </div>
+                    </div>
                     <!--Empty div for spacing-->
                     <div></div>
                     <h3>Additional Comments</h3>
-                    <span class="input-field" contenteditable="true">Additional Comments here</span>
+                    <span class="input-field" contenteditable="true" id="comments"></span>
+                    <button type="submit">Submit</button>
                 </form>
             </div>
+
         </div>
     </div>
 </body>

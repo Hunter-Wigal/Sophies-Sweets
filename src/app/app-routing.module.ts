@@ -5,6 +5,8 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { MenuComponent } from './menu/menu.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { OrdersPageComponent } from './orders-page/orders-page.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutPageComponent
+  },
+  {
+    path: 'admin',
+    component: AdminPageComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersPageComponent
   }
 ];
 
