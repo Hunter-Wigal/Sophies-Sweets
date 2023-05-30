@@ -1,1 +1,35 @@
-<p>admin-page works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="background">
+    <h1>Admin Access</h1>
+    <div class="container">
+        <div class="row">
+
+                <form #logInForm="ngForm" (ngSubmit)="logIn(logInForm)">
+    
+                    <h3>Username/Email</h3>
+                    <div class="row">
+                        <input type="email" placeholder="Email Address" ngModel name="email" required name>
+                    </div>
+    
+                    <h3>Password</h3>
+                    <div class="row">
+                        <input type="password" placeholder="Password" ngModel name="password" required password>
+                    </div>
+    
+                    <button class="btn btn-secondary" type="submit">Submit</button>
+                </form>
+
+        </div>
+        
+    </div>
+</body>
+
+</html>
