@@ -1,8 +1,9 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable , OnInit} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { OrderModel } from './order.model';
 import { NgForm } from '@angular/forms';
 import { FilesService } from '../files.service';
+import { macarons } from './flavors';
 
 @Component({
   selector: 'app-order-page',
@@ -11,14 +12,39 @@ import { FilesService } from '../files.service';
 })
 
 //@Injectable({ providedIn: 'root' })
-export class OrderPageComponent {
+export class OrderPageComponent implements OnInit {
   validName: boolean;
   validEmail: boolean;
+  macaronFlavors: string[];
 
   constructor(private titleService: Title, private fs: FilesService) {
     this.titleService.setTitle("How to Order");
     this.validName = true;
     this.validEmail = true;
+
+    this.macaronFlavors = macarons;
+    
+  }
+
+  ngOnInit(): void {
+    const radio1 = document.getElementById("Radio1");
+    const radio2 = document.getElementById("Radio2");
+    const signatureForm = document.getElementById("SignatureForm");
+    const customForm = document.getElementById("CustomForm");
+
+    if(radio1 && radio2 && signatureForm && customForm){
+      radio1.onclick = function(){
+        signatureForm.hidden = false;
+        customForm.hidden = true;
+      }
+      radio2.onclick = function(){
+        signatureForm.hidden = true;
+        customForm.hidden = false;
+      }
+    }
+    else{
+      console.log(radio1);
+    }
   }
 
   sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -47,11 +73,27 @@ export class OrderPageComponent {
     }
   }
 
+  selectCake2(cake: string){
+    const button = document.getElementById("cakeButton2");
+
+    if(button){
+      button.innerHTML = cake;
+    }
+  }
+
   selectIcing(icing: string){
     const button = document.getElementById("icingButton");
 
     if(button){
       button.innerHTML = icing;
+    }
+  }
+
+  selectMacaron(flavor: string){
+    const button = document.getElementById("macaronButton");
+
+    if(button){
+      button.innerHTML = flavor;
     }
   }
 

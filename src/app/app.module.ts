@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// import { MatRadioModule } from '@angular/material/radio';
+// import { MatRadioButton } from '@angular/material/radio';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +17,7 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { GalleryCardComponent } from './gallery/gallery-card/gallery-card.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

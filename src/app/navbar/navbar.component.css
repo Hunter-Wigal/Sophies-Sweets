@@ -3,3 +3,13 @@ body{
     min-height: 6.5vh;
     margin: auto;
 }
+
+.logo{
+    max-height: 9vh;
+}
+
+.nav-link{
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+}

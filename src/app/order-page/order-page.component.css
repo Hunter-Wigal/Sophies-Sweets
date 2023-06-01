@@ -15,3 +15,15 @@ input{
 .btn{
     min-width: 85px;
 }
+
+.content{
+    margin-inline: 10%;
+    font-size: 22px;
+}
+
+.buttons{
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+}

@@ -17,3 +17,8 @@ i{
 .thead{
     background-color: #e6ade6;
 }
+
+.logout{
+    width: 15%;
+    margin: auto
+}

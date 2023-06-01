@@ -3,7 +3,6 @@ import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -17,21 +16,25 @@ export class AdminPageComponent {
   password = "";
   loggedIn: boolean;
 
-  constructor(private as: AuthService, private titleService: Title, private router: Router, private fb: FormBuilder){
+  constructor(private as: AuthService, private titleService: Title, private router: Router){
     this.titleService.setTitle("Admin");
     this.loggedIn = false;
+
+    this.as.redirect('/orders', true);
   }
 
-  ngOnInit(){
-    this.loggedIn = (this.as.loggedIn() != null);
-
-    if(this.loggedIn){
-      this.router.navigate(['/orders']);
+  // TODO: Add some more verification steps to require a valid email. Also display a message to the user if not valid
+  async login(form: NgForm){
+    if((<string>form.value.email).search("@") < 1){
+      window.alert("Please input a valid email");
+      return;
     }
-  }
+    if(form.value.password == null){
+      window.alert("Please input a valid password");
+      return;
+    }
+    const loggedIn = await this.as.login(form.value.email, form.value.password);
 
-  login(form: NgForm){
-    const loggedIn = this.as.login(form.value.email, form.value.password);
     if(loggedIn == null){
       window.alert("You are not an authorized admin for this page");
     }
