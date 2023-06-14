@@ -9,7 +9,7 @@
 
 <body class="background">
     <h1>Current Orders</h1>
-    <div class="container">
+    <div class="container-fluid">
         <div class="table-responsive">
             <table class="table">
                 <thead class="thead">
@@ -17,9 +17,11 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Completion Date</th>
                         <th scope="col">Type</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Cake Flavor <i>(If applicable)</i></th>
+                        <th scope="col">Macaron Flavor <i>(If applicable)</i></th>
                         <th scope="col">Icing</th>
                         <th scope="col">Comments</th>
                     </tr>
@@ -29,9 +31,11 @@
                         <td>{{order.name}}</td>
                         <td>{{order.email}}</td>
                         <td>{{order.phone}}</td>
+                        <td>{{order.requestedDate}}</td>
                         <td>{{order.type}}</td>
                         <td>{{order.quantity}}</td>
-                        <td>{{order.cake}}</td>
+                        <td>{{order.cake_flavor}}</td>
+                        <td>{{order.macaron_flavor}}</td>
                         <td>{{order.icing}}</td>
                         <td>{{order.comments}}</td>
                     <tr>

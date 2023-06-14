@@ -32,7 +32,7 @@ export class FilesService {
 
     public async getMacaronImages() {
         const macaronRef = ref(this.storage, "Pictures");
-        const macaronRefs = (await list(ref(macaronRef, "/NewMacarons"))).items;
+        const macaronRefs = (await list(ref(macaronRef, "/Macarons"))).items;
 
         return macaronRefs;
 
@@ -40,7 +40,7 @@ export class FilesService {
 
     public async getCupcakeImages() {
         const pictureRef = ref(this.storage, "Pictures");
-        const cupcakeRefs = (await list(ref(pictureRef, "/NewCupcakes"))).items;
+        const cupcakeRefs = (await list(ref(pictureRef, "/Cupcakes"))).items;
 
         return cupcakeRefs;
 
@@ -48,7 +48,7 @@ export class FilesService {
 
     public async getCakeImages() {
         const picturesRef = ref(this.storage, "Pictures");
-        const cakeRefs = (await list(ref(picturesRef, "/NewCakes"))).items;
+        const cakeRefs = (await list(ref(picturesRef, "/Cakes"))).items;
 
         return cakeRefs;
 
@@ -60,9 +60,11 @@ export class FilesService {
                 name: order.name,
                 email: order.email,
                 phone: order.phone,
+                requestedDate: order.requestedDate,
                 type: order.type,
                 quantity: order.quantity,
-                cake: order.cake,
+                cake_flavor: order.cake_flavor,
+                macaron_flavor: order.macaron_flavor,
                 icing: order.icing,
                 comments: order.comments
             });

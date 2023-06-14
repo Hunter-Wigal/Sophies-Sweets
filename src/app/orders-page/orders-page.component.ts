@@ -24,11 +24,27 @@ export class OrdersPageComponent {
 
   async getOrders(){
     this.orders = await this.fs.getOrders();
+    this.cleanOrders();
   }
 
   async logout(){
     await this.as.logout();
     //window.alert("Signed out");
     this.as.redirect('/admin', false);
+  }
+
+  cleanOrders(){
+    this.orders.forEach(order =>
+      {
+        let item: keyof typeof order;
+        for(item in order){
+          if(order[item].trim() === "Select"){
+            order[item] = "";
+          }
+          else if(order[item].trim().charAt(0) === ","){
+            order[item] = order[item].substring(1, order[item].length)
+          }
+        }
+      })
   }
 }

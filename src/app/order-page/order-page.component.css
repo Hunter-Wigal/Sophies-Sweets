@@ -8,22 +8,54 @@
     background-color: white;
     max-width: 500px;
 }
-input{
-    max-width: 500px;
+
+input {
+    max-width: 600px;
 }
 
-.btn{
+.btn {
     min-width: 85px;
 }
 
-.content{
+.content {
     margin-inline: 10%;
     font-size: 22px;
 }
 
-.buttons{
+.buttons {
     margin: auto;
     align-items: center;
     justify-content: center;
 
+}
+
+.title {
+    text-align: center;
+    max-width: 600px;
+}
+
+h5 {
+    font-weight: normal;
+    display: inline;
+}
+
+@media screen and (max-width: 700px) {
+
+    .price{
+        min-width: 100%;
+        padding-left: 0%;
+        margin-left: 10%;
+        & h3{
+            font-size: 24px;
+        }
+        & h5{
+            font-size: 14px;
+        }
+    }
+}
+.price {
+    background: #C0C0C0;
+    max-width: 60%;
+    padding-left: 5%;
+    position: sticky;
 }

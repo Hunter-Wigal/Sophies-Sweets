@@ -1,7 +1,7 @@
 .center{
     text-align: center;
     background-color: black;
-    height: 8.5vh;
+    min-height: 8.5vh;
     width: 100%;
     color: #bd99b2;
     bottom: 0;
