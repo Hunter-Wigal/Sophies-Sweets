@@ -19,13 +19,21 @@
     .car-image, .col  {
         min-width: 90%;
     }
+    .welcome{
+        margin-inline: 0%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .welcome{
+        margin-inline: 15%;
+    }
 }
 
 .welcome {
     font-size: 20px;
     text-align: center;
     font-weight: 500;
-    margin-inline: 20%;
 }
 
 .carousel-control-prev-icon {

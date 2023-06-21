@@ -35,6 +35,8 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
     serviceID: string;
     publicKey: string;
 
+    largeScreen: boolean;
+
     constructor(private titleService: Title, private fs: FilesService) {
       this.titleService.setTitle("How to Order");
       this.validName = true;
@@ -58,6 +60,12 @@ import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
       this.templateID = 'template_nzsrmfb';
       this.serviceID = 'service_9mshn9a';
       this.publicKey = 'PK0Vl_xPRIQEajJy0';
+      
+      this.largeScreen = window.innerWidth > 1000;
+      window.onresize = () =>
+      {
+        this.largeScreen = window.innerWidth > 1000;
+      }
     }
 
     ngOnInit(): void {
