@@ -60,3 +60,11 @@ h5 {
     background-color: #C0C0C0;
     margin-inline: 15%;
 }
+
+/* input:invalid:required {
+    background-color: red;
+  } */
+
+  .validity{
+    color: red;
+  }

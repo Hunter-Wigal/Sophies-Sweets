@@ -18,20 +18,15 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col d-flex mb-5 justify-content-center">
-                <p class="content">This page contains order forms to place an order for either cakes, cupcakes,
-                    or
-                    macarons. To order,
-                    simply fill out all of the required fields and select either one of the signature flavors or
-                    custom
-                    flavors form
-                    the dropdown menus below. Any additional comments can be included in the marked section.
-                    Sophie
-                    will
-                    get back to you
-                    shortly with an order confirmation and payment information. Payments can either be taken
-                    through
-                    PayPal or
-                    in person using card or cash.
+                <p class="content">
+                    This page contains order forms to place an order for either cakes, cupcakes, or
+                    macarons. To order,simply fill out all of the required fields and select either one of the signature
+                    flavors
+                    or custom flavors form the dropdown menus below. Any additional comments can be included in the
+                    marked section.
+                    Sophie will get back to you shortly with an order confirmation and payment information. Payments can
+                    either
+                    be taken through PayPal or in person using card or cash.
                 </p>
 
             </div>
@@ -57,7 +52,7 @@
                         <label class="form-check-label" for="Radio2">Custom Flavors</label>
                     </div>
                 </div>
-
+                <!--Signature Flavors form start-->
                 <div class="row" [hidden]="false" id="SignatureForm" style="margin: auto">
                     <div class="col d-flex justify-content-center">
                         <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm, 1)" id="orderform">
@@ -66,20 +61,24 @@
                             </div>
                             <div class="row">
                                 <h3>Name</h3>
-                                <input class="form-control" type="name" placeholder="Name" ngModel name="name">
+                                <input id="formName" class="form-control" type="name" placeholder="Name" ngModel
+                                    name="name" required>
+                                <p class="validity" [hidden]="validName">Please input a valid name</p>
                             </div>
                             <div class="row">
                                 <h3>Email Address</h3>
                                 <input class="form-control" type="email" placeholder="Email" ngModel name="email">
+                                <p class="validity" [hidden]="validEmail">Please input a valid email address</p>
                             </div>
                             <div class="row">
                                 <h3>Phone Number <i>(optional)</i></h3>
-                                <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel
-                                    name="phone">
+                                <input class="form-control" type="tel" id="phone" name="phone"
+                                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel name="phone">
                             </div>
                             <div class="row">
                                 <h3>Preferred Order Completion Date</h3>
-                                <input class="form-control" type="date" ngModel name="date">
+                                <input id="dateSelect" class="form-control" type="date" ngModel name="date">
+                                <p class="validity" [hidden]="validDate">Please select a date</p>
                             </div>
                             <div class="row">
                                 <h3 class="col-7">Item Type</h3>
@@ -94,6 +93,7 @@
                                         <a class="dropdown-item" (click)="select('Macarons', 'typeButton')">Macarons</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validType">Please select an item type</p>
                             </div>
                             <div class="row">
                                 <h3 class="col-7">Quantity</h3>
@@ -108,6 +108,7 @@
                                             (click)="select(quant, 'quantityButton')">{{quant}}</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
                             </div>
                             <div class="row" [hidden]="!cupCakeSelected">
                                 <h3 class="col-7">Cake/Cupcake Flavors</h3>
@@ -121,6 +122,7 @@
                                             (click)="select(cake, 'cakeButton')">{{cake}}</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
                             </div>
                             <div class="row" [hidden]="!macaronSelected">
                                 <h3 class="col-7">Macaron Flavors</h3>
@@ -134,6 +136,7 @@
                                             (click)="select(flavor, 'macaronButton')">{{flavor}}</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
                             </div>
                             <h3>Additional Comments</h3>
                             <span class="input-field" contenteditable="true" id="comments"></span>
@@ -142,6 +145,7 @@
                     </div>
 
                 </div>
+                <!--Signature flavors form end-->
 
                 <!--Custom order form-->
                 <div class="row mb-5" [hidden]="true" id="CustomForm">
@@ -154,19 +158,23 @@
                             <div class="row">
                                 <h3>Name</h3>
                                 <input class="form-control" type="name" placeholder="Name" ngModel name="name">
+                                <p class="validity" [hidden]="validName">Please input a valid name</p>
                             </div>
                             <div class="row">
                                 <h3>Email Address</h3>
                                 <input class="form-control" type="email" placeholder="Email" ngModel name="email">
+                                <p class="validity" [hidden]="validEmail">Please input a valid email address</p>
                             </div>
                             <div class="row">
                                 <h3>Phone Number <i>(optional)</i></h3>
-                                <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel
-                                    name="phone">
+                                <input class="form-control" type="tel" id="phone" name="phone"
+                                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel name="phone">
+                                <p class="validity" [hidden]="validPhone">Please input a valid phone number</p>
                             </div>
                             <div class="row">
                                 <h3>Preferred Order Completion Date</h3>
-                                <input class="form-control" type="date" ngModel name="date">
+                                <input id="dateSelect" class="form-control" type="date" ngModel name="date">
+                                <p class="validity" [hidden]="validDate">Please select a date</p>
                             </div>
                             <div class="row">
                                 <h3 class="col-7">Item Type</h3>
@@ -183,6 +191,7 @@
                                             (click)="select('Macarons', 'typeButton2')">Macarons</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validType">Please select an item type</p>
                             </div>
                             <div class="row">
                                 <h3 class="col-7">Quantity</h3>
@@ -197,6 +206,7 @@
                                             (click)="select(quant, 'quantityButton2')">{{quant}}</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
                             </div>
                             <div class="row" [hidden]="!customCakeSelected">
                                 <h3 class="col-7">Cake Flavors</h3>
@@ -210,6 +220,7 @@
                                             (click)="select(cake, 'cakeButton2')">{{cake}}</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
                             </div>
                             <div class="row" [hidden]="!macaronSelected">
                                 <h3 class="col-7">Macaron Flavors</h3>
@@ -225,6 +236,7 @@
                                             (click)="select('Vanilla', 'macaronButton2')">Vanilla</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
                             </div>
                             <div class="row">
                                 <h3 class="col-7">Icing Flavor</h3>
@@ -236,22 +248,26 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="icingbutton">
                                         <a class="dropdown-item" *ngFor="let icing of icings"
                                             (click)="select(icing, 'icingButton')">{{icing}}</a>
-                                        <a class="dropdown-item" 
+                                        <a class="dropdown-item"
                                             (click)="select('Other/See Comments', 'icingButton')">Other/See Comments</a>
                                     </div>
                                 </div>
+                                <p class="validity" [hidden]="validIcingFlavor">Please select an icing flavor</p>
                             </div>
                             <div class="row" [hidden]="!macaronSelected">
                                 <h3 class="col-7">Macaron Additions</h3>
                                 <div class="dropdown col">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="additionsButton"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
+                                        None
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="macaronButton">
-                                        <a class="dropdown-item" (click)="select('Sprinkles', 'additionsButton')">Sprinkles</a>
+                                        <a class="dropdown-item" (click)="select('None', 'additionsButton')">None</a>
+                                        <a class="dropdown-item"
+                                            (click)="select('Sprinkles', 'additionsButton')">Sprinkles</a>
                                         <a class="dropdown-item"
                                             (click)="select('Drizzles', 'additionsButton')">Drizzles</a>
+
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +277,7 @@
                         </form>
                     </div>
 
-                </div><!--Custom form section-->
+                </div><!--Custom form section end-->
 
             </div>
             <div *ngIf="largeScreen" class="col pe-5 ps-1 mt-5">
@@ -303,7 +319,7 @@
 
 
         </div>
-        
+
         <div *ngIf="!largeScreen" class="row mt-5">
             <div class="col mobile-price" id="example">
                 <div class="">
