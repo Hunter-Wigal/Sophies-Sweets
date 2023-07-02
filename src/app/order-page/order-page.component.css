@@ -50,15 +50,17 @@ h5 {
     }
 }
 .price {
-    background-color: #C0C0C0;
+    background-color: #e6ade6;
     max-width: 60%;
     padding-left: 5%;
     position: sticky;
+    border-radius: 25px;
 }
 
 .mobile-price{
-    background-color: #C0C0C0;
+    background-color: #e6ade6;
     margin-inline: 15%;
+    border-radius: 10px;
 }
 
 /* input:invalid:required {

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { FilesService } from '../files.service';
 import { cakes, cupcakePrices, icing, macaronPrices, macarons, quantities, signatureCakes, signatureMacarons } from './flavors';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+// import * as $ from 'jquery';
 
 @Component({
   selector: 'app-order-page',
@@ -112,6 +113,7 @@ export class OrderPageComponent implements OnInit {
     const type = document.getElementById("type");
     const quantity = document.getElementById("quantity");
     const price = document.getElementById("price");
+    this.quantities = quantities;
 
     if (button) {
       button.innerText = text.toString();
@@ -130,6 +132,7 @@ export class OrderPageComponent implements OnInit {
           this.cakeSelected = false;
           this.cupCakeSelected = false;
           this.customCakeSelected = false;
+          this.quantities.shift();
         }
         else if (text.toString() === "Cake") {
           this.macaronSelected = false;
@@ -153,10 +156,9 @@ export class OrderPageComponent implements OnInit {
         price.innerText = "$" + macaronPrices[quantities.indexOf(parseInt(quantity.innerText))].toString();
       }
     }
-  }
+  }// End of select
 
   async addOrder(form: NgForm, formType: number) {
-    console.log("Submitting...");
     let typeSelect = document.getElementById("typeButton");
     let quantitySelect = document.getElementById("quantityButton");
     let cakeSelect = document.getElementById("cakeButton");
@@ -200,7 +202,7 @@ export class OrderPageComponent implements OnInit {
       }
     }
     else {
-      window.alert("Error with form");
+      $('#errorModal').modal('show'); 
       return;
     }
 
@@ -262,7 +264,6 @@ export class OrderPageComponent implements OnInit {
     const email: string = form.value.email;
 
     if (!name || name.length < 5) {
-      // window.alert("Please use your full name")
       this.validName = false;
       valid = false;
     }
@@ -289,12 +290,11 @@ export class OrderPageComponent implements OnInit {
 
     if (success != null) {
       this.sendEmail(order);
-      window.alert("Successfully added order");
 
-      window.location.reload();
+      $('#successModal').modal('show');
     }
     else {
-      window.alert("Error adding document");
+      $('#errorModal').modal('show');
     }
   }//End of addOrder
 
@@ -326,6 +326,14 @@ export class OrderPageComponent implements OnInit {
       }, function (error) {
         console.log('FAILED...', error);
       });
+  }
+
+  openEmail(){
+    window.open('mailto:bakergirlsophie@gmail.com?subject=Cake Order');
+  }
+
+  reload(){
+    window.location.reload();
   }
 
 }

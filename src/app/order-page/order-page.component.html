@@ -49,7 +49,7 @@
                     <div class="form-check form-check-inline me-5 col-2">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio2"
                             value="custom">
-                        <label class="form-check-label" for="Radio2">Custom Flavors</label>
+                        <label class="form-check-label" for="Radio2">Custom Order</label>
                     </div>
                 </div>
                 <!--Signature Flavors form start-->
@@ -95,7 +95,7 @@
                                 </div>
                                 <p class="validity" [hidden]="validType">Please select an item type</p>
                             </div>
-                            <div class="row">
+                            <div class="row" [hidden]="cakeSelected">
                                 <h3 class="col-7">Quantity</h3>
                                 <div class="dropdown col">
                                     <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button"
@@ -138,10 +138,23 @@
                                 </div>
                                 <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
                             </div>
-                            <h3>Additional Comments</h3>
-                            <span class="input-field" contenteditable="true" id="comments"></span>
-                            <button class="btn btn-secondary" type="submit">Submit</button>
+                            <div [hidden]="cakeSelected">
+                                <h3>Additional Comments</h3>
+                                <span class="input-field" contenteditable="true" id="comments"></span>
+                                <button class="btn btn-secondary" type="submit">Submit</button>
+                            </div>
+                            <div [hidden]="!cakeSelected" class="my-3">
+                                <h3>Due to the complexity of cake orders, please reach out directly through email</h3>
+                                <button class="btn btn-secondary" (click)="openEmail()" type="button">Open
+                                    Email</button>
+                            </div>
                         </form>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+
                     </div>
 
                 </div>
@@ -153,7 +166,7 @@
 
                         <form #customForm="ngForm" (ngSubmit)="addOrder(customForm, 2)" id="customform">
                             <div class="row">
-                                <h3 class="title"><u>Custom Flavors</u></h3>
+                                <h3 class="title"><u>Custom Order</u></h3>
                             </div>
                             <div class="row">
                                 <h3>Name</h3>
@@ -193,95 +206,112 @@
                                 </div>
                                 <p class="validity" [hidden]="validType">Please select an item type</p>
                             </div>
-                            <div class="row">
-                                <h3 class="col-7">Quantity</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button"
-                                        id="quantityButton2" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" *ngFor="let quant of quantities"
-                                            (click)="select(quant, 'quantityButton2')">{{quant}}</a>
+                            <div [hidden]="cakeSelected">
+                                <div class="row">
+                                    <h3 class="col-7">Quantity</h3>
+                                    <div class="dropdown col">
+                                        <button class="btn btn-secondary dropdown-toggle dropdown-menu-right"
+                                            type="button" id="quantityButton2" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            Select
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" *ngFor="let quant of quantities"
+                                                (click)="select(quant, 'quantityButton2')">{{quant}}</a>
+                                        </div>
                                     </div>
+                                    <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
                                 </div>
-                                <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
-                            </div>
-                            <div class="row" [hidden]="!customCakeSelected">
-                                <h3 class="col-7">Cake Flavors</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="cakeButton2"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="cakeButton2">
-                                        <a class="dropdown-item" *ngFor="let cake of cakeFlavors"
-                                            (click)="select(cake, 'cakeButton2')">{{cake}}</a>
+                                <div class="row" [hidden]="!customCakeSelected">
+                                    <h3 class="col-7">Cake Flavors</h3>
+                                    <div class="dropdown col">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="cakeButton2"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Select
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                            id="cakeButton2">
+                                            <a class="dropdown-item" *ngFor="let cake of cakeFlavors"
+                                                (click)="select(cake, 'cakeButton2')">{{cake}}</a>
+                                        </div>
                                     </div>
+                                    <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
                                 </div>
-                                <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
-                            </div>
-                            <div class="row" [hidden]="!macaronSelected">
-                                <h3 class="col-7">Macaron Flavors</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="macaronButton2"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="macaronButton">
-                                        <a class="dropdown-item" (click)="select('Almond', 'macaronButton2')">Almond
-                                            (regular)</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Vanilla', 'macaronButton2')">Vanilla</a>
+                                <div class="row" [hidden]="!macaronSelected">
+                                    <h3 class="col-7">Macaron Flavors</h3>
+                                    <div class="dropdown col">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="macaronButton2" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Select
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                            id="macaronButton">
+                                            <a class="dropdown-item" (click)="select('Almond', 'macaronButton2')">Almond
+                                                (regular)</a>
+                                            <a class="dropdown-item"
+                                                (click)="select('Vanilla', 'macaronButton2')">Vanilla</a>
+                                        </div>
                                     </div>
+                                    <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
                                 </div>
-                                <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
-                            </div>
-                            <div class="row">
-                                <h3 class="col-7">Icing Flavor</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="icingButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="icingbutton">
-                                        <a class="dropdown-item" *ngFor="let icing of icings"
-                                            (click)="select(icing, 'icingButton')">{{icing}}</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Other/See Comments', 'icingButton')">Other/See Comments</a>
+                                <div class="row">
+                                    <h3 class="col-7">Icing Flavor</h3>
+                                    <div class="dropdown col">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="icingButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Select
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                            id="icingbutton">
+                                            <a class="dropdown-item" *ngFor="let icing of icings"
+                                                (click)="select(icing, 'icingButton')">{{icing}}</a>
+                                            <a class="dropdown-item"
+                                                (click)="select('Other/See Comments', 'icingButton')">Other/See
+                                                Comments</a>
+                                        </div>
                                     </div>
+                                    <p class="validity" [hidden]="validIcingFlavor">Please select an icing flavor</p>
                                 </div>
-                                <p class="validity" [hidden]="validIcingFlavor">Please select an icing flavor</p>
-                            </div>
-                            <div class="row" [hidden]="!macaronSelected">
-                                <h3 class="col-7">Macaron Additions</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="additionsButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        None
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="macaronButton">
-                                        <a class="dropdown-item" (click)="select('None', 'additionsButton')">None</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Sprinkles', 'additionsButton')">Sprinkles</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Drizzles', 'additionsButton')">Drizzles</a>
+                                <div class="row" [hidden]="!macaronSelected">
+                                    <h3 class="col-7">Macaron Additions</h3>
+                                    <div class="dropdown col">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="additionsButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            None
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                            id="macaronButton">
+                                            <a class="dropdown-item"
+                                                (click)="select('None', 'additionsButton')">None</a>
+                                            <a class="dropdown-item"
+                                                (click)="select('Sprinkles', 'additionsButton')">Sprinkles</a>
+                                            <a class="dropdown-item"
+                                                (click)="select('Drizzles', 'additionsButton')">Drizzles</a>
 
+                                        </div>
                                     </div>
                                 </div>
+                                <h3>Additional Comments</h3>
+                                <span class="input-field" contenteditable="true" id="comments2"></span>
+                                <button class="btn btn-secondary" type="submit">Submit</button>
                             </div>
-                            <h3>Additional Comments</h3>
-                            <span class="input-field" contenteditable="true" id="comments2"></span>
-                            <button class="btn btn-secondary" type="submit">Submit</button>
+                            <div [hidden]="!cakeSelected" class="my-3">
+                                <h3>Due to the complexity of cake orders, please reach out directly through email</h3>
+                                <button class="btn btn-secondary" (click)="openEmail()" type="button">Open
+                                    Email</button>
+                            </div>
                         </form>
+
                     </div>
+
 
                 </div><!--Custom form section end-->
 
             </div>
             <div *ngIf="largeScreen" class="col pe-5 ps-1 mt-5">
-                <div class="price sticky-top" id="example">
+                <div class="price sticky-top py-3" id="example">
                     <div class="">
                         <h3 class="mb-5">Order Estimate</h3>
                     </div>
@@ -321,7 +351,7 @@
         </div>
 
         <div *ngIf="!largeScreen" class="row mt-5">
-            <div class="col mobile-price" id="example">
+            <div class="col mobile-price py-3" id="example">
                 <div class="">
                     <h3 class="mb-3">Order Estimate</h3>
                 </div>
@@ -357,7 +387,47 @@
             </div>
         </div>
     </div>
-    <!-- <button (click)="sendEmail()">Send Test Email</button> -->
+  
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          There was an error submitting the form. Please try again. If the error persists please email at bakergirlsophie@gmail.com
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Order Successfully Added</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Success! The order request was added. You should recieve an email from Sophie in the next 48 hours
+          either confirming the order or if she has any questions. 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reload()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

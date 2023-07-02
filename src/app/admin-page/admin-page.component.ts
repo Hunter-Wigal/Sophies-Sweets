@@ -43,5 +43,7 @@ export class AdminPageComponent {
       this.router.navigate(['/orders']);
     }
 
+    
+
   }
 }

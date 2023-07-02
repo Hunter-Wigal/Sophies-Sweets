@@ -19,3 +19,7 @@ ul, li{
 .bottom-border{
     border-bottom: 2px solid gray;
 }
+
+.allergy{
+    font-size: 20px;
+}

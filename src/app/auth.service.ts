@@ -34,6 +34,22 @@ export class AuthService {
                 console.log(errorMessage);
                 return null;
             });
+
+            this.auth.onAuthStateChanged((user) => {
+                let userSessionTimeout = null;
+            
+                if (user === null && userSessionTimeout) {
+                  clearTimeout(userSessionTimeout);
+                  userSessionTimeout = null;
+                } else if(user !== null) {
+                  user.getIdTokenResult().then((idTokenResult) => {
+                    const authTime = ((idTokenResult.claims.auth_time != undefined) ? (parseInt(idTokenResult.claims.auth_time)  * 1000): 0);
+                    const sessionDurationInMilliseconds = 60 * 60 * 1000; // 60 min
+                    const expirationInMilliseconds = sessionDurationInMilliseconds - (Date.now() - authTime);
+                    userSessionTimeout = setTimeout(() => this.auth.signOut(), expirationInMilliseconds);
+                  });
+                }
+              });
         return user;
     }
 

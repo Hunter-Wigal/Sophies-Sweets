@@ -57,11 +57,11 @@ export const quantities = [
 export const cupcakePrices = [
     15,
     24,
-    15
+    42,
+    54
 ]
 
 export const macaronPrices = [
-    15,
     24,
     36,
     45

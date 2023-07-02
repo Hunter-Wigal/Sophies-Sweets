@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 // import { MatRadioModule } from '@angular/material/radio';
 // import { MatRadioButton } from '@angular/material/radio';
 
@@ -18,6 +19,8 @@ import { GalleryCardComponent } from './gallery/gallery-card/gallery-card.compon
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import * as bootstrap from "bootstrap";
+import * as $ from "jquery";
 
 @NgModule({
   declarations: [
