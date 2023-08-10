@@ -12,7 +12,7 @@
     <h1 class="header pt-3">Sophie's Sweets</h1>
     <div class="content container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-7">
+            <div class="col">
                 <p class="welcome">Welcome to my website! Sophie's Sweets is a home baking business located in
                     Parkersburg, West Virginia. I offer cakes and cupcakes, but found my specialty in macarons.
                     <br>
@@ -21,50 +21,69 @@
 
                 </p>
             </div>
-        </div>
 
-        <div class="row pb-5">
-            <div class="col">
-                <!-- <div class="col"></div> -->
-                <div id="carouselExampleIndicators" data-ride="carousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1" class="">
-                        </li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2" class="">
-                        </li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FSophie%2FIMG_1361.JPG?alt=media&amp;token=e13e52d3-e31b-4b85-9cfa-f07fad981b34"
-                                alt="First slide" class="d-block w-100 car-image">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FSophie%2FIMG_6277.jpg?alt=media&amp;token=2cc9c3c1-ac96-4ebb-8657-c1d040586f69"
-                                alt="Second slide" class="d-block w-100 car-image">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FNewMacarons%2FIMG_0239.jpg?alt=media&token=a7c9d681-948c-4bfd-98e5-c3009b303a3e"
-                                alt="Third slide" class="d-block w-100 car-image">
-                        </div>
-                    </div>
-                    <a href="#carouselExampleIndicators" role="button" data-slide="prev" class="carousel-control-prev">
-                        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a href="#carouselExampleIndicators" role="button" data-slide="next" class="carousel-control-next">
-                        <span aria-hidden="true" class="carousel-control-next-icon"></span>
-                    </a>
+            <h1 class="header">Products</h1>
+            <div class="products row">
+                <div class="product-card pb-3 card-col">
+                    <h3 class="mb-4">Cupcakes</h3>
+                    <img
+                        src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FHomeCupcakes%2Fhome_cupcake.jpg?alt=media&token=3291bc32-a450-4a40-a982-67e1202b06c1">
                 </div>
-                <!-- <div class="col">
-                    <div class="row justify-content-md-end justify-content-sm-center">
-                        <div class="col-md-5 col-sm-7 mt-sm-3">
-                            <p>You can also contact me directly through email if you have any questions!</p>
-                            <a href="mailto:bakergirlsophie@gmail.com">Send email</a>
-                        </div>
-                    </div>
-                </div> -->
+                <div class="product-card pb-3 mx-5 card-col">
+                    <h3 class="mb-4">Cakes</h3>
+                    <img
+                        src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FHomeCakes%2FIMG_8182%20(2).jpg?alt=media&token=41a1b5a6-cc4e-430a-a091-fa0a489840f5">
+                </div>
+                <div class="product-card pb-3 card-col">
+                    <h3 class="mb-4">Macarons</h3>
+                    <img
+                        src="https://firebasestorage.googleapis.com/v0/b/sophiessweets-785d8.appspot.com/o/Pictures%2FHomeMacarons%2FIMG_6506%20(1).jpg?alt=media&token=d4ead307-17fa-4f27-86fa-a52f25bb2fa6">
+                </div>
             </div>
         </div>
+
+        <!-- <div class="row" style="margin-inline: 10%;">
+            <h1 class="header mt-5">Reviews</h1>
+            <div class="col mb-4" *ngFor="let review of reviews">
+                    <app-review-card review={{review.review}} name={{review.name}}>
+                    </app-review-card>
+
+                </div>
+        </div> -->
+
+        <h1 class="header mt-5">Reviews</h1>
+        <div class="row pb-5">
+            <div class="col">
+                <div id="carousel" style="margin-bottom: 0;" data-ride="carousel" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <app-review-card review={{firstReview.review}} name={{firstReview.name}}>
+                            </app-review-card>
+                        </div>
+                        <div class="carousel-item" *ngFor="let review of reviews">
+                            <app-review-card review={{review.review}} name={{review.name}}>
+                            </app-review-card>
+                        </div>
+
+                    </div>
+                    <div class="carousel-controls card">
+                        <button class="carousel-control-prev" type="button" data-target="#carousel"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+
+                        <button class="carousel-control-next" type="button" data-target="#carousel"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </body>

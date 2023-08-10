@@ -1,0 +1,9 @@
+.card{
+    background-color: #e6ade6;
+    border-bottom-right-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border: none;
+    padding: 1rem 1rem 0rem 1rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* margin: auto; */
+}

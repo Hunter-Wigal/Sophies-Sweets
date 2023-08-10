@@ -21,6 +21,7 @@ import { OrdersPageComponent } from './orders-page/orders-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
+import { ReviewCardComponent } from './home/review-card/review-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import * as $ from "jquery";
     BottomBarComponent,
     GalleryCardComponent,
     AdminPageComponent,
-    OrdersPageComponent
+    OrdersPageComponent,
+    ReviewCardComponent
   ],
   imports: [
     BrowserModule,
