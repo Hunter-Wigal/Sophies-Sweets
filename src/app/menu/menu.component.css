@@ -12,9 +12,8 @@ ul, li{
     background-color: inherit;
 }
 
-.col{
-    border-right: 1px solid black;
-    border-left: 1px solid black;
+.cup-col{
+    border-right: 2px solid black;
 }
 .bottom-border{
     border-bottom: 2px solid gray;
