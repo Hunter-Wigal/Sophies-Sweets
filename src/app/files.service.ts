@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 //import "firebase/storage";
 import { FirebaseStorage, StorageReference, getStorage, list, listAll, ref } from "firebase/storage";
 import { getDownloadURL } from "firebase/storage";
-import { Firestore, getFirestore, addDoc, collection, getDocs, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { Firestore, getFirestore, addDoc, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { OrderModel } from "./order-page/order.model";
 
 @Injectable({ providedIn: 'root' })
@@ -80,9 +80,16 @@ export class FilesService {
         let orders: OrderModel[] = [];
         const querySnapshot = await getDocs(collection(this.db, "Orders"));
         querySnapshot.forEach((doc) => {
-            orders.push(<OrderModel>doc.data())
+            var order = <OrderModel>doc.data();
+            order.id = doc.id;
+;           orders.push(order)
         });
         return orders;
     }
+
+    deleteOrder(id: string) {
+        return deleteDoc(doc(this.db, "Orders", id));
+      }
+    
 
 }

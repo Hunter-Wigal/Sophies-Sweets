@@ -38,6 +38,7 @@
                         <td>{{order.macaron_flavor}}</td>
                         <td>{{order.icing}}</td>
                         <td>{{order.comments}}</td>
+                        <td><button class="btn btn-danger" (click)="deleteOrder(order.id)">Delete</button></td>
                     <tr>
                 </tbody>
             </table>
@@ -48,6 +49,7 @@
             <button class="btn btn-secondary logout" (click)="logout()">Log Out</button>
         </div>
     </div>
+
 </body>
 
 </html>

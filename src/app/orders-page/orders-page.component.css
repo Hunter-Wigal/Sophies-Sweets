@@ -22,3 +22,10 @@ i{
     width: 15%;
     margin: auto
 }
+
+@media screen and (max-width: 700px) {
+    .logout{
+        width: 50%;
+    }
+}
+

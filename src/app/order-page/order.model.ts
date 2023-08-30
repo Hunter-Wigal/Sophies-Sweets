@@ -9,9 +9,10 @@ export class OrderModel {
     icing: string;
     comments: string;
     requestedDate: string;
+    id: string;
 
     constructor(_name: string, _email: string, _phone: string, _orderType: string, _quantity: string, _cakeFlavor: string, _macaronFlavor: string,
-         _icingFlavor: string, _comments: string, _requestedDate: string){
+         _icingFlavor: string, _comments: string, _requestedDate: string, _id: string){
         this.name = _name;
         this.email = _email;
         this.phone = _phone;
@@ -22,5 +23,6 @@ export class OrderModel {
         this.icing = _icingFlavor;
         this.comments = _comments;
         this.requestedDate = _requestedDate;
+        this.id = _id;
     }
 }

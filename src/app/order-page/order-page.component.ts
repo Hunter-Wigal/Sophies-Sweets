@@ -284,7 +284,7 @@ export class OrderPageComponent implements OnInit {
     }
 
     const order = new OrderModel(form.value.name, form.value.email, form.value.phone, type, quantity, cake, macaron, icing,
-      comments, form.value.date.toString());
+      comments, form.value.date.toString(), "Not set yet");
 
     const success = await this.fs.addOrder(order);
 
@@ -320,6 +320,7 @@ export class OrderPageComponent implements OnInit {
       type: order.type,
       requestedDate: order.requestedDate
     }
+
     emailjs.send(this.serviceID, this.templateID, templateParams, this.publicKey)
       .then(function (response) {
         console.log('SUCCESS!', response.status, response.text);
