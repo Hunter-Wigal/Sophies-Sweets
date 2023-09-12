@@ -337,5 +337,11 @@ export class OrderPageComponent implements OnInit {
     window.location.reload();
   }
 
+  closeNotice(){
+    let notice = document.getElementById("notice");
+    if(notice != null)
+      notice.hidden = true;
+  }
+
 }
 

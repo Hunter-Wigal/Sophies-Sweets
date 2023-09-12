@@ -9,9 +9,6 @@
     
 }
 
-.btn {
-    min-width: 85px;
-}
 
 .content {
     margin-inline: 10%;
@@ -69,4 +66,11 @@ h5 {
 
   .validity{
     color: red;
+  }
+
+  .notice{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgb(255, 179, 0);
   }
