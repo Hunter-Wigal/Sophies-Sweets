@@ -7,7 +7,10 @@ export const macarons = [
     "Lemon",
     "Sour Patch",
     "Coffee",
-    "Pistachio"
+    "Pistachio",
+    "S'mores",
+    "Snickers",
+    "Caramel Apple Pie"
 
 ]
 export const cakes = [

@@ -20,14 +20,26 @@ export class GalleryComponent {
     this.titleService.setTitle("Gallery");
   }
 
-  async ngOnInit(): Promise<void> {
-    const macaronImages = await this.fs.getMacaronImages();
-    const cupcakeImages = await this.fs.getCupcakeImages();
-    const cakeImages = await this.fs.getCakeImages();
+  ngOnInit() {
+    const macaronImages = this.fs.getMacaronImages().then(
+      (macaronImages) => {
+        this.getImages(macaronImages, 1);
+      }
+    );
+    const cupcakeImages = this.fs.getCupcakeImages().then(
+      (cupcakeImages) => {
+        this.getImages(cupcakeImages, 2);
+      }
+    );
+    const cakeImages = this.fs.getCakeImages().then(
+      (cakeImages) => {
+        this.getImages(cakeImages, 3);
+      }
+    );
 
-    this.getImages(macaronImages, 1);
-    this.getImages(cakeImages, 2);
-    this.getImages(cupcakeImages, 3);
+    // this.getImages(macaronImages, 1);
+    // this.getImages(cakeImages, 2);
+    // this.getImages(cupcakeImages, 3);
   }
 
   async getImages(images: StorageReference[], type: number) {
