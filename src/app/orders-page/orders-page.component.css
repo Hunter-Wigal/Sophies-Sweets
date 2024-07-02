@@ -1,3 +1,5 @@
+
+
 h1{
     text-align: center;
 }
@@ -11,11 +13,19 @@ i{
 }
 
 .col{
-    border-right: 1px solid black;
+    border-left: 1px solid black;
 }
 
-.thead{
+.header{
     background-color: #e6ade6;
+    /* border-left: 1px solid black; */
+    height: 3rem;
+    align-content: center;
+}
+
+.data{
+    /* border-left: 1px solid black; */
+    overflow-y: scroll;
 }
 
 .logout{
@@ -23,9 +33,19 @@ i{
     margin: auto
 }
 
+.delete{
+    width: 10%;
+    margin: auto;
+}
+
+
 @media screen and (max-width: 700px) {
     .logout{
         width: 50%;
+    }
+
+    .delete{
+        width: 25%;
     }
 }
 

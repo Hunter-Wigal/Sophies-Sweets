@@ -28,12 +28,12 @@ export class GalleryComponent {
     );
     const cupcakeImages = this.fs.getCupcakeImages().then(
       (cupcakeImages) => {
-        this.getImages(cupcakeImages, 2);
+        this.getImages(cupcakeImages, 3);
       }
     );
     const cakeImages = this.fs.getCakeImages().then(
       (cakeImages) => {
-        this.getImages(cakeImages, 3);
+        this.getImages(cakeImages, 2);
       }
     );
 

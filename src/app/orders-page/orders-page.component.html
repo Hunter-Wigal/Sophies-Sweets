@@ -9,8 +9,8 @@
 
 <body class="background">
     <h1>Current Orders</h1>
-    <div class="container-fluid">
-        <div class="table-responsive">
+    <div class="container-fluid w-100">
+        <!-- <div class="table-responsive">
             <table class="table">
                 <thead class="thead">
                     <tr>
@@ -43,11 +43,74 @@
                 </tbody>
             </table>
 
+        </div> -->
+
+        <div class="text-bg-secondary p-2 text-light m-3 rounded w-75 d-flex mx-auto"
+            *ngIf="orders.length == 0; else ordersTemplate">
+            <h3 class="text-center">There are no orders to display</h3>
         </div>
 
-        <div class="row">
-            <button class="btn btn-secondary logout" (click)="logout()">Log Out</button>
-        </div>
+
+        <ng-template #ordersTemplate>
+            <div class="orders mx-5 mb-3" *ngFor="let order of orders; index as i">
+                <hr/>
+                <div class="row mt-3">
+                    <h3 class="w-50 d-inline-block">Order Number {{i + 1}}</h3>
+                </div>
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="header row px-1">Name</div>
+                        <div class="data row px-1">{{order.name}}</div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="header row px-1">Email</div>
+                        <div class="data row px-1">{{order.email}}</div>
+                    </div>
+                    <div class="col mb-4" *ngIf="order.phone.length > 0">
+                        <div class="header row px-1">Phone</div>
+                        <div class="data row px-1">{{order.phone}}</div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="header row px-1">Completion Date</div>
+                        <div class="data row px-1">{{order.requestedDate}}</div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="header row px-1">Type</div>
+                        <div class="data row px-1">{{order.type}}</div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="header row px-1">Quantity</div>
+                        <div class="data row px-1">{{order.quantity}}</div>
+                    </div>
+                    <div class="col mb-4" *ngIf="order.cake_flavor.length > 0">
+                        <div class="header row px-1">Cake Flavor</div>
+                        <div class="data row px-1">{{order.cake_flavor}}</div>
+                    </div>
+                    <div class="col mb-4" *ngIf="order.macaron_flavor.length > 0">
+                        <div class="header row px-1">Macaron Flavor</div>
+                        <div class="data row px-1">{{order.macaron_flavor}}</div>
+                    </div>
+                    <div class="col mb-4" *ngIf="order.icing.length > 0">
+                        <div class="header row px-1">Icing</div>
+                        <div class="data row px-1">{{order.icing}}</div>
+                    </div>
+                    <div class="col mb-4" *ngIf="order.comments.length > 0">
+                        <div class="header row px-1">Comments</div>
+                        <div class="data row px-1">{{order.comments}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-danger h-25 delete" (click)="deleteOrder(order.id)">Delete</button>
+                </div>
+
+            </div>
+        </ng-template>
+
+
+    </div>
+
+    <div class="row">
+        <button class="btn btn-secondary logout" (click)="logout()">Log Out</button>
     </div>
 
 </body>

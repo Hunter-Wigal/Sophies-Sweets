@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { OrderModel } from '../order-page/order.model';
 import { FilesService } from '../files.service';
 import { AuthService } from '../auth.service';
+import { HtmlParser } from '@angular/compiler';
+
+
 
 
 @Component({
@@ -10,9 +13,12 @@ import { AuthService } from '../auth.service';
   templateUrl: './orders-page.component.html',
   styleUrls: ['./orders-page.component.css']
 })
-export class OrdersPageComponent {
+export class OrdersPageComponent implements AfterViewInit{
   orders: OrderModel[] = [];
   sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  // @ViewChild('table') table!: HTMLElement;
+  table!: HTMLElement | null;
 
   constructor(private titleService: Title, private fs: FilesService, private as: AuthService) {
     this.titleService.setTitle("Orders");
@@ -22,9 +28,21 @@ export class OrdersPageComponent {
     this.getOrders();
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.table = document.getElementById('table');
+    this.adjustHeight();
+  }
+
   async getOrders(){
     this.orders = await this.fs.getOrders();
     this.cleanOrders();
+  }
+
+  adjustHeight(){
+    console.log(this.table);
+    console.log("loaded");
   }
 
   async logout(){
