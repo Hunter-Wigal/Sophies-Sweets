@@ -1,17 +1,18 @@
 body{
     background-color: #e6ade6;
-    min-height: 6.5vh;
+    min-height: 10%;
     margin: auto;
 }
 
 .logo{
-    max-height: 9vh;
+    max-height: 60px;
 }
 
 .nav-link{
     color: black;
     font-weight: 400;
     font-size: 20px;
+    /* border-left: 1px solid white; */
 }
 
 .nav-link:hover{

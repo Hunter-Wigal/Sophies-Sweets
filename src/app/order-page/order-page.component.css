@@ -1,76 +1,116 @@
 .input-field {
-    height: 50px;
-    display: block;
-    overflow: auto;
-    resize: both;
-    min-height: 40px;
-    line-height: 20px;
-    background-color: white;
-    
+  min-height: 75px;
+  display: block;
+  overflow: auto;
+  resize: both;
+  line-height: 20px;
+  background-color: white;
 }
 
-
 .content {
-    margin-inline: 10%;
-    font-size: 22px;
+  margin-inline: 10%;
+  font-size: 22px;
 }
 
 .buttons {
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-
+  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-    text-align: center;
-    
+  text-align: center;
 }
 
 h5 {
-    font-weight: normal;
-    display: inline;
+  font-weight: normal;
+  display: inline;
 }
 
 @media screen and (max-width: 700px) {
-
-    .price{
-        min-width: 100%;
-        padding-left: 0%;
-        margin-left: 10%;
-        & h3{
-            font-size: 24px;
-        }
-        & h5{
-            font-size: 14px;
-        }
+  .price {
+    min-width: 100%;
+    padding-left: 0%;
+    margin-left: 10%;
+    & h3 {
+      font-size: 24px;
     }
+    & h5 {
+      font-size: 14px;
+    }
+  }
 }
 .price {
-    background-color: #e6ade6;
-    max-width: 60%;
-    padding-left: 5%;
-    position: sticky;
-    border-radius: 25px;
+  background-color: #e6ade6;
+  max-width: 60%;
+  padding-left: 5%;
+  position: sticky;
+  border-radius: 25px;
+  z-index: 5;
 }
 
-.mobile-price{
-    background-color: #e6ade6;
-    margin-inline: 15%;
-    border-radius: 10px;
+.mobile-price {
+  background-color: #e6ade6;
+  margin-inline: 15%;
+  border-radius: 10px;
 }
 
 /* input:invalid:required {
     background-color: red;
   } */
 
-  .validity{
-    color: red;
-  }
+.validity {
+  color: red;
+}
 
-  .notice{
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    background-color: rgb(255, 179, 0);
+.notice {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: rgb(255, 179, 0);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  display: block;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.message {
+  z-index: 11;
+  color: white;
+  width: 35%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  right: 50%;
+  background: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 3px solid white;
+  border-radius: 30px;
+}
+
+
+@media
+(max-width: 1100px){
+  .message{
+    width: 75%;
   }
+}
+
+
+@media
+(max-width: 700px){
+  .message{
+    width: 90%;
+  }
+}

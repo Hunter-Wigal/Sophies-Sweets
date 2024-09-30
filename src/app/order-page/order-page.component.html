@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body class="background">
+  <body class="background">
+    <div class="overlay">
+      <div class="message">
+        <h2>
+          Unfortunately Sophie isn't taking orders right now due to working full
+          time, but this may change in the future. Please check back later!
+        </h2>
+        <button
+          class="btn btn-primary mt-5"
+          style="width: 50%; margin-inline: auto"
+          routerLink="/"
+        >
+          Home Page
+        </button>
+      </div>
+    </div>
     <div class="container-fluid">
-        <!-- <div class="row" id="notice">
+      <!-- <div class="row" id="notice">
             <div class="col-2 notice"></div>
             <div class="col notice pt-3">
                 <p class="inline">Notice: Orders need to be placed at least a week in advance.
@@ -21,429 +35,749 @@
                 </button>
             </div>
         </div> -->
-        <div class="row">
-            <div class="col d-flex justify-content-center main">
-                <h2 class="mt-3">How to Order</h2>
-            </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center main">
+          <h2 class="mt-3">How to Order</h2>
         </div>
+      </div>
 
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col d-flex mb-5 justify-content-center">
-                <p class="content">
-                    This page contains order forms to place an order for either cakes, cupcakes, or
-                    macarons. To order,simply fill out all of the required fields and select either one of the signature
-                    flavors
-                    or custom flavors form the dropdown menus below. Any additional comments can be included in the
-                    marked section.
-                    Sophie will get back to you shortly with an order confirmation and payment information. Payments can
-                    either
-                    be taken through PayPal or in person using card or cash.
-                </p>
-
-            </div>
-            <div class="col-md-1"></div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col d-flex mb-5 justify-content-center">
+          <p class="content">
+            This page contains order forms to place an order for either cakes,
+            cupcakes, or macarons. To order,simply fill out all of the required
+            fields and select either one of the signature flavors or custom
+            flavors form the dropdown menus below. Any additional comments can
+            be included in the marked section. Sophie will get back to you
+            shortly with an order confirmation and payment information. Payments
+            can either be taken through PayPal or in person using card or cash.
+          </p>
         </div>
-        <div class="row justify-content-center">
-            <div class="col" *ngIf="largeScreen"></div>
-            <div class="col-lg-5">
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col" *ngIf="largeScreen"></div>
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col d-flex justify-content-center mb-5">
+              <h2 class="mt-3">Place Your Orders Here</h2>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="form-check col-2 me-5">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="Radio1"
+                value="signature"
+              />
+              <label class="form-check-label" for="Radio1"
+                >Signature Flavors</label
+              >
+            </div>
+            <div class="form-check form-check-inline me-5 col-2">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                id="Radio2"
+                value="custom"
+              />
+              <label class="form-check-label" for="Radio2">Custom Order</label>
+            </div>
+          </div>
+          <!--Signature Flavors form start-->
+          <div
+            class="row"
+            [hidden]="false"
+            id="SignatureForm"
+            style="margin: auto"
+          >
+            <div class="col d-flex justify-content-center">
+              <form
+                #orderForm="ngForm"
+                (ngSubmit)="addOrder(orderForm, 1)"
+                id="orderform"
+              >
                 <div class="row">
-                    <div class="col d-flex justify-content-center mb-5">
-                        <h2 class="mt-3">Place Your Orders Here</h2>
-                    </div>
+                  <h3 class="title"><u>Signature Flavors</u></h3>
                 </div>
-                <div class="row justify-content-around">
-                    <div class="form-check col-2 me-5">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio1"
-                            value="signature">
-                        <label class="form-check-label" for="Radio1">Signature Flavors</label>
-                    </div>
-                    <div class="form-check form-check-inline me-5 col-2">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio2"
-                            value="custom">
-                        <label class="form-check-label" for="Radio2">Custom Order</label>
-                    </div>
+                <div class="row">
+                  <h3>Name</h3>
+                  <input
+                    id="formName"
+                    class="form-control"
+                    type="name"
+                    placeholder="Name"
+                    ngModel
+                    name="name"
+                    required
+                  />
+                  <p class="validity" [hidden]="validName">
+                    Please input a valid name
+                  </p>
                 </div>
-                <!--Signature Flavors form start-->
-                <div class="row" [hidden]="false" id="SignatureForm" style="margin: auto">
-                    <div class="col d-flex justify-content-center">
-                        <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm, 1)" id="orderform">
-                            <div class="row">
-                                <h3 class="title"><u>Signature Flavors</u></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Name</h3>
-                                <input id="formName" class="form-control" type="name" placeholder="Name" ngModel
-                                    name="name" required>
-                                <p class="validity" [hidden]="validName">Please input a valid name</p>
-                            </div>
-                            <div class="row">
-                                <h3>Email Address</h3>
-                                <input class="form-control" type="email" placeholder="Email" ngModel name="email">
-                                <p class="validity" [hidden]="validEmail">Please input a valid email address</p>
-                            </div>
-                            <div class="row">
-                                <h3>Phone Number <i>(optional)</i></h3>
-                                <input class="form-control" type="tel" id="phone" name="phone"
-                                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel name="phone">
-                            </div>
-                            <div class="row">
-                                <h3>Preferred Order Completion Date</h3>
-                                <input id="dateSelect" class="form-control" type="date" ngModel name="date">
-                                <p class="validity" [hidden]="validDate">Please select a date</p>
-                            </div>
-                            <div class="row">
-                                <h3 class="col-7">Item Type</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="typeButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="typebutton">
-                                        <a class="dropdown-item" (click)="select('Cake', 'typeButton')">Cake</a>
-                                        <a class="dropdown-item" (click)="select('Cupcakes', 'typeButton')">Cupcakes</a>
-                                        <a class="dropdown-item" (click)="select('Macarons', 'typeButton')">Macarons</a>
-                                    </div>
-                                </div>
-                                <p class="validity" [hidden]="validType">Please select an item type</p>
-                            </div>
-                            <div class="row" [hidden]="cakeSelected">
-                                <h3 class="col-7">Quantity</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle dropdown-menu-right" type="button"
-                                        id="quantityButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" *ngFor="let quant of quantities"
-                                            (click)="select(quant, 'quantityButton')">{{quant}}</a>
-                                    </div>
-                                </div>
-                                <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
-                            </div>
-                            <div class="row" [hidden]="!cupCakeSelected">
-                                <h3 class="col-7">Cake/Cupcake Flavors</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="cakeButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="cakebutton">
-                                        <a class="dropdown-item" *ngFor="let cake of sigCakes"
-                                            (click)="select(cake, 'cakeButton')">{{cake}}</a>
-                                    </div>
-                                </div>
-                                <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
-                            </div>
-                            <div class="row" [hidden]="!macaronSelected">
-                                <h3 class="col-7">Macaron Flavors</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="macaronButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="macaronButton">
-                                        <a class="dropdown-item" *ngFor="let flavor of macaronFlavors"
-                                            (click)="select(flavor, 'macaronButton')">{{flavor}}</a>
-                                    </div>
-                                </div>
-                                <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
-                            </div>
-                            <div [hidden]="cakeSelected">
-                                <h3>Additional Comments</h3>
-                                <span class="input-field" contenteditable="true" id="comments"></span>
-                                <button class="btn btn-secondary" type="submit">Submit</button>
-                            </div>
-                            <div [hidden]="!cakeSelected" class="my-3">
-                                <h3>Due to the complexity of cake orders, please reach out directly through email</h3>
-                                <button class="btn btn-secondary" (click)="openEmail()" type="button">Open
-                                    Email</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-
-                        </div>
-
-                    </div>
-
+                <div class="row">
+                  <h3>Email Address</h3>
+                  <input
+                    class="form-control"
+                    type="email"
+                    placeholder="Email"
+                    ngModel
+                    name="email"
+                  />
+                  <p class="validity" [hidden]="validEmail">
+                    Please input a valid email address
+                  </p>
                 </div>
-                <!--Signature flavors form end-->
-
-                <!--Custom order form-->
-                <div class="row mb-5" [hidden]="true" id="CustomForm">
-                    <div class="col d-flex justify-content-center">
-
-                        <form #customForm="ngForm" (ngSubmit)="addOrder(customForm, 2)" id="customform">
-                            <div class="row">
-                                <h3 class="title"><u>Custom Order</u></h3>
-                            </div>
-                            <div class="row">
-                                <h3>Name</h3>
-                                <input class="form-control" type="name" placeholder="Name" ngModel name="name">
-                                <p class="validity" [hidden]="validName">Please input a valid name</p>
-                            </div>
-                            <div class="row">
-                                <h3>Email Address</h3>
-                                <input class="form-control" type="email" placeholder="Email" ngModel name="email">
-                                <p class="validity" [hidden]="validEmail">Please input a valid email address</p>
-                            </div>
-                            <div class="row">
-                                <h3>Phone Number <i>(optional)</i></h3>
-                                <input class="form-control" type="tel" id="phone" name="phone"
-                                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" ngModel name="phone">
-                                <p class="validity" [hidden]="validPhone">Please input a valid phone number</p>
-                            </div>
-                            <div class="row">
-                                <h3>Preferred Order Completion Date</h3>
-                                <input id="dateSelect" class="form-control" type="date" ngModel name="date">
-                                <p class="validity" [hidden]="validDate">Please select a date</p>
-                            </div>
-                            <div class="row">
-                                <h3 class="col-7">Item Type</h3>
-                                <div class="dropdown col">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="typeButton2"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Select
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" (click)="select('Cake', 'typeButton2')">Cake</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Cupcakes', 'typeButton2')">Cupcakes</a>
-                                        <a class="dropdown-item"
-                                            (click)="select('Macarons', 'typeButton2')">Macarons</a>
-                                    </div>
-                                </div>
-                                <p class="validity" [hidden]="validType">Please select an item type</p>
-                            </div>
-                            <div [hidden]="cakeSelected">
-                                <div class="row">
-                                    <h3 class="col-7">Quantity</h3>
-                                    <div class="dropdown col">
-                                        <button class="btn btn-secondary dropdown-toggle dropdown-menu-right"
-                                            type="button" id="quantityButton2" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" *ngFor="let quant of quantities"
-                                                (click)="select(quant, 'quantityButton2')">{{quant}}</a>
-                                        </div>
-                                    </div>
-                                    <p class="validity" [hidden]="validQuantity">Please select an item quantity</p>
-                                </div>
-                                <div class="row" [hidden]="!customCakeSelected">
-                                    <h3 class="col-7">Cake Flavors</h3>
-                                    <div class="dropdown col">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="cakeButton2"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                            id="cakeButton2">
-                                            <a class="dropdown-item" *ngFor="let cake of cakeFlavors"
-                                                (click)="select(cake, 'cakeButton2')">{{cake}}</a>
-                                        </div>
-                                    </div>
-                                    <p class="validity" [hidden]="validCakeFlavor">Please select a cake flavor</p>
-                                </div>
-                                <div class="row" [hidden]="!macaronSelected">
-                                    <h3 class="col-7">Macaron Flavors</h3>
-                                    <div class="dropdown col">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="macaronButton2" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                            id="macaronButton">
-                                            <a class="dropdown-item" (click)="select('Almond', 'macaronButton2')">Almond
-                                                (regular)</a>
-                                            <a class="dropdown-item"
-                                                (click)="select('Vanilla', 'macaronButton2')">Vanilla</a>
-                                        </div>
-                                    </div>
-                                    <p class="validity" [hidden]="validMacaronFlavor">Please select a macaron flavor</p>
-                                </div>
-                                <div class="row">
-                                    <h3 class="col-7">Icing Flavor</h3>
-                                    <div class="dropdown col">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="icingButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                            id="icingbutton">
-                                            <a class="dropdown-item" *ngFor="let icing of icings"
-                                                (click)="select(icing, 'icingButton')">{{icing}}</a>
-                                            <a class="dropdown-item"
-                                                (click)="select('Other/See Comments', 'icingButton')">Other/See
-                                                Comments</a>
-                                        </div>
-                                    </div>
-                                    <p class="validity" [hidden]="validIcingFlavor">Please select an icing flavor</p>
-                                </div>
-                                <div class="row" [hidden]="!macaronSelected">
-                                    <h3 class="col-7">Macaron Additions</h3>
-                                    <div class="dropdown col">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="additionsButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            None
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                                            id="macaronButton">
-                                            <a class="dropdown-item"
-                                                (click)="select('None', 'additionsButton')">None</a>
-                                            <a class="dropdown-item"
-                                                (click)="select('Sprinkles', 'additionsButton')">Sprinkles</a>
-                                            <a class="dropdown-item"
-                                                (click)="select('Drizzles', 'additionsButton')">Drizzles</a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3>Additional Comments</h3>
-                                <span class="input-field" contenteditable="true" id="comments2"></span>
-                                <button class="btn btn-secondary" type="submit">Submit</button>
-                            </div>
-                            <div [hidden]="!cakeSelected" class="my-3">
-                                <h3>Due to the complexity of cake orders, please reach out directly through email</h3>
-                                <button class="btn btn-secondary" (click)="openEmail()" type="button">Open
-                                    Email</button>
-                            </div>
-                        </form>
-
+                <div class="row">
+                  <h3>Phone Number <i>(optional)</i></h3>
+                  <input
+                    class="form-control"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                    ngModel
+                    name="phone"
+                  />
+                </div>
+                <div class="row">
+                  <h3>Preferred Order Completion Date</h3>
+                  <input
+                    id="dateSelect"
+                    class="form-control"
+                    type="date"
+                    ngModel
+                    name="date"
+                  />
+                  <p class="validity" [hidden]="validDate">
+                    Please select a date
+                  </p>
+                </div>
+                <div class="row mt-2">
+                  <h3 class="col-7">Item Type</h3>
+                  <div class="dropdown col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="typeButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Select
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                      id="typebutton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Cake', 'typeButton')"
+                        >Cake</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Cupcakes', 'typeButton')"
+                        >Cupcakes</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Macarons', 'typeButton')"
+                        >Macarons</a
+                      >
                     </div>
-
-
-                </div><!--Custom form section end-->
-
+                  </div>
+                  <p class="validity" [hidden]="validType">
+                    Please select an item type
+                  </p>
+                </div>
+                <div class="row" [hidden]="cakeSelected">
+                  <h3 class="col-7">Quantity</h3>
+                  <div class="dropdown col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle dropdown-menu-right"
+                      type="button"
+                      id="quantityButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Select
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        *ngFor="let quant of quantities"
+                        (click)="select(quant, 'quantityButton')"
+                        >{{ quant }}</a
+                      >
+                    </div>
+                  </div>
+                  <p class="validity" [hidden]="validQuantity">
+                    Please select an item quantity
+                  </p>
+                </div>
+                <div class="row" [hidden]="!cupCakeSelected">
+                  <h3 class="col-7">Cake/Cupcake Flavors</h3>
+                  <div class="dropdown col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="cakeButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Select
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                      id="cakebutton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        *ngFor="let cake of sigCakes"
+                        (click)="select(cake, 'cakeButton')"
+                        >{{ cake }}</a
+                      >
+                    </div>
+                  </div>
+                  <p class="validity" [hidden]="validCakeFlavor">
+                    Please select a cake flavor
+                  </p>
+                </div>
+                <div class="row" [hidden]="!macaronSelected">
+                  <h3 class="col-7">Macaron Flavors</h3>
+                  <div class="dropdown col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="macaronButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Select
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                      id="macaronButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        *ngFor="let flavor of macaronFlavors"
+                        (click)="select(flavor, 'macaronButton')"
+                        >{{ flavor }}</a
+                      >
+                    </div>
+                  </div>
+                  <p class="validity" [hidden]="validMacaronFlavor">
+                    Please select a macaron flavor
+                  </p>
+                </div>
+                <div
+                  [hidden]="cakeSelected"
+                  style="display: flex; flex-direction: column"
+                >
+                  <h3>Additional Comments</h3>
+                  <span
+                    class="input-field"
+                    contenteditable="true"
+                    id="comments"
+                  ></span>
+                  <button
+                    class="btn btn-secondary my-2"
+                    style="width: 25%; margin-inline: auto !important"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+                <div [hidden]="!cakeSelected" class="my-3">
+                  <h3>
+                    Due to the complexity of cake orders, please reach out
+                    directly through email
+                  </h3>
+                  <button
+                    class="btn btn-secondary"
+                    (click)="openEmail()"
+                    type="button"
+                  >
+                    Open Email
+                  </button>
+                </div>
+              </form>
             </div>
-            <div *ngIf="largeScreen" class="col pe-5 ps-1 mt-5">
-                <div class="price sticky-top py-3" id="example">
-                    <div class="">
-                        <h3 class="mb-5">Order Estimate</h3>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <h5 [hidden]="validForm">Please select a type and quantity to get a price</h5>
-                        </div>
-
-                    </div>
-                    <div class="">
-                        <div class="" [hidden]="!validForm">
-                            <div class="">
-                                <h5 class="">Type: </h5>
-                                <h5 class="" id="type"></h5>
-                            </div>
-                            <div class="">
-                                <h5 class="">Quantity: </h5>
-                                <h5 class="" id="quantity"></h5>
-                            </div>
-                            <div class="" [hidden]="cakeSelected">
-                                <h5 class="">Price: </h5>
-                                <h5 class="" id="price"></h5>
-                            </div>
-                            <div class="" [hidden]="!cakeSelected">
-                                <h5 class="">Price: </h5>
-                                <h5 class="">Prices of cakes depend on intricacy and number of layers. Please reach
-                                    out to get a personalized estimate.
-                                </h5>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="row">
+              <div class="col"></div>
             </div>
+          </div>
+          <!--Signature flavors form end-->
 
-
+          <!--Custom order form-->
+          <div class="row mb-5" [hidden]="true" id="CustomForm">
+            <div class="col d-flex justify-content-center">
+              <form
+                #customForm="ngForm"
+                (ngSubmit)="addOrder(customForm, 2)"
+                id="customform"
+              >
+                <div class="row">
+                  <h3 class="title"><u>Custom Order</u></h3>
+                </div>
+                <div class="row">
+                  <h3>Name</h3>
+                  <input
+                    class="form-control"
+                    type="name"
+                    placeholder="Name"
+                    ngModel
+                    name="name"
+                  />
+                  <p class="validity" [hidden]="validName">
+                    Please input a valid name
+                  </p>
+                </div>
+                <div class="row">
+                  <h3>Email Address</h3>
+                  <input
+                    class="form-control"
+                    type="email"
+                    placeholder="Email"
+                    ngModel
+                    name="email"
+                  />
+                  <p class="validity" [hidden]="validEmail">
+                    Please input a valid email address
+                  </p>
+                </div>
+                <div class="row">
+                  <h3>Phone Number <i>(optional)</i></h3>
+                  <input
+                    class="form-control"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                    ngModel
+                    name="phone"
+                  />
+                  <p class="validity" [hidden]="validPhone">
+                    Please input a valid phone number
+                  </p>
+                </div>
+                <div class="row">
+                  <h3>Preferred Order Completion Date</h3>
+                  <input
+                    id="dateSelect"
+                    class="form-control"
+                    type="date"
+                    ngModel
+                    name="date"
+                  />
+                  <p class="validity" [hidden]="validDate">
+                    Please select a date
+                  </p>
+                </div>
+                <div class="row mt-2">
+                  <h3 class="col-7">Item Type</h3>
+                  <div class="dropdown col">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="typeButton2"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Select
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Cake', 'typeButton2')"
+                        >Cake</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Cupcakes', 'typeButton2')"
+                        >Cupcakes</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        (click)="select('Macarons', 'typeButton2')"
+                        >Macarons</a
+                      >
+                    </div>
+                  </div>
+                  <p class="validity" [hidden]="validType">
+                    Please select an item type
+                  </p>
+                </div>
+                <div [hidden]="cakeSelected">
+                  <div class="row">
+                    <h3 class="col-7">Quantity</h3>
+                    <div class="dropdown col">
+                      <button
+                        class="btn btn-secondary dropdown-toggle dropdown-menu-right"
+                        type="button"
+                        id="quantityButton2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Select
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <a
+                          class="dropdown-item"
+                          *ngFor="let quant of quantities"
+                          (click)="select(quant, 'quantityButton2')"
+                          >{{ quant }}</a
+                        >
+                      </div>
+                    </div>
+                    <p class="validity" [hidden]="validQuantity">
+                      Please select an item quantity
+                    </p>
+                  </div>
+                  <div class="row" [hidden]="!customCakeSelected">
+                    <h3 class="col-7">Cake Flavors</h3>
+                    <div class="dropdown col">
+                      <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="cakeButton2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Select
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                        id="cakeButton2"
+                      >
+                        <a
+                          class="dropdown-item"
+                          *ngFor="let cake of cakeFlavors"
+                          (click)="select(cake, 'cakeButton2')"
+                          >{{ cake }}</a
+                        >
+                      </div>
+                    </div>
+                    <p class="validity" [hidden]="validCakeFlavor">
+                      Please select a cake flavor
+                    </p>
+                  </div>
+                  <div class="row" [hidden]="!macaronSelected">
+                    <h3 class="col-7">Macaron Flavors</h3>
+                    <div class="dropdown col">
+                      <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="macaronButton2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Select
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                        id="macaronButton"
+                      >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('Almond', 'macaronButton2')"
+                          >Almond (regular)</a
+                        >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('Vanilla', 'macaronButton2')"
+                          >Vanilla</a
+                        >
+                      </div>
+                    </div>
+                    <p class="validity" [hidden]="validMacaronFlavor">
+                      Please select a macaron flavor
+                    </p>
+                  </div>
+                  <div class="row">
+                    <h3 class="col-7">Icing Flavor</h3>
+                    <div class="dropdown col">
+                      <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="icingButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Select
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                        id="icingbutton"
+                      >
+                        <a
+                          class="dropdown-item"
+                          *ngFor="let icing of icings"
+                          (click)="select(icing, 'icingButton')"
+                          >{{ icing }}</a
+                        >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('Other/See Comments', 'icingButton')"
+                          >Other/See Comments</a
+                        >
+                      </div>
+                    </div>
+                    <p class="validity" [hidden]="validIcingFlavor">
+                      Please select an icing flavor
+                    </p>
+                  </div>
+                  <div class="row" [hidden]="!macaronSelected">
+                    <h3 class="col-7">Macaron Additions</h3>
+                    <div class="dropdown col">
+                      <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="additionsButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        None
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                        id="macaronButton"
+                      >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('None', 'additionsButton')"
+                          >None</a
+                        >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('Sprinkles', 'additionsButton')"
+                          >Sprinkles</a
+                        >
+                        <a
+                          class="dropdown-item"
+                          (click)="select('Drizzles', 'additionsButton')"
+                          >Drizzles</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <h3>Additional Comments</h3>
+                  <span
+                    class="input-field"
+                    contenteditable="true"
+                    id="comments2"
+                  ></span>
+                  <button class="btn btn-secondary" type="submit">
+                    Submit
+                  </button>
+                </div>
+                <div [hidden]="!cakeSelected" class="my-3">
+                  <h3>
+                    Due to the complexity of cake orders, please reach out
+                    directly through email
+                  </h3>
+                  <button
+                    class="btn btn-secondary"
+                    (click)="openEmail()"
+                    type="button"
+                  >
+                    Open Email
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!--Custom form section end-->
         </div>
-
-        <div *ngIf="!largeScreen" class="row mt-5">
-            <div class="col mobile-price py-3" id="example">
-                <div class="">
-                    <h3 class="mb-3">Order Estimate</h3>
-                </div>
-                <div class="">
-                    <div class="">
-                        <h5 [hidden]="validForm">Please select a type and quantity to get a price</h5>
-                    </div>
-
-                </div>
-                <div class="">
-                    <div class="" [hidden]="!validForm">
-                        <div class="">
-                            <h5 class="">Type: </h5>
-                            <h5 class="" id="type"></h5>
-                        </div>
-                        <div class="">
-                            <h5 class="">Quantity: </h5>
-                            <h5 class="" id="quantity"></h5>
-                        </div>
-                        <div class="" [hidden]="cakeSelected">
-                            <h5 class="">Price: </h5>
-                            <h5 class="" id="price"></h5>
-                        </div>
-                        <div class="" [hidden]="!cakeSelected">
-                            <h5 class="">Price: </h5>
-                            <h5 class="">Prices of cakes depend on intricacy and number of layers. Please reach
-                                out to get a personalized estimate.
-                            </h5>
-                        </div>
-                    </div>
-
-                </div>
+        <div *ngIf="largeScreen" class="col pe-5 ps-1 mt-5">
+          <div class="price sticky-top py-3" id="example">
+            <div class="">
+              <h3 class="mb-5">Order Estimate</h3>
             </div>
+            <div class="">
+              <div class="">
+                <h5 [hidden]="validForm">
+                  Please select a type and quantity to get a price
+                </h5>
+              </div>
+            </div>
+            <div class="">
+              <div class="" [hidden]="!validForm">
+                <div class="">
+                  <h5 class="">Type:</h5>
+                  <h5 class="" id="type"></h5>
+                </div>
+                <div class="">
+                  <h5 class="">Quantity:</h5>
+                  <h5 class="" id="quantity"></h5>
+                </div>
+                <div class="" [hidden]="cakeSelected">
+                  <h5 class="">Price:</h5>
+                  <h5 class="" id="price"></h5>
+                </div>
+                <div class="" [hidden]="!cakeSelected">
+                  <h5 class="">Price:</h5>
+                  <h5 class="">
+                    Prices of cakes depend on intricacy and number of layers.
+                    Please reach out to get a personalized estimate.
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div *ngIf="!largeScreen" class="row mt-5">
+        <div class="col mobile-price py-3" id="example">
+          <div class="">
+            <h3 class="mb-3">Order Estimate</h3>
+          </div>
+          <div class="">
+            <div class="">
+              <h5 [hidden]="validForm">
+                Please select a type and quantity to get a price
+              </h5>
+            </div>
+          </div>
+          <div class="">
+            <div class="" [hidden]="!validForm">
+              <div class="">
+                <h5 class="">Type:</h5>
+                <h5 class="" id="type"></h5>
+              </div>
+              <div class="">
+                <h5 class="">Quantity:</h5>
+                <h5 class="" id="quantity"></h5>
+              </div>
+              <div class="" [hidden]="cakeSelected">
+                <h5 class="">Price:</h5>
+                <h5 class="" id="price"></h5>
+              </div>
+              <div class="" [hidden]="!cakeSelected">
+                <h5 class="">Price:</h5>
+                <h5 class="">
+                  Prices of cakes depend on intricacy and number of layers.
+                  Please reach out to get a personalized estimate.
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Error Modal -->
-    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    There was an error submitting the form. Please try again. If the error persists please email at
-                    bakergirlsophie@gmail.com
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="errorModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            There was an error submitting the form. Please try again. If the
+            error persists please email at bakergirlsophie&#64;gmail.com
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Success Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Order Successfully Added</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Success! The order request was added. You should recieve an email from Sophie in the next 48 hours
-                    either confirming the order or if she has any questions.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        (click)="reload()">Close</button>
-                </div>
-            </div>
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Order Successfully Added
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Success! The order request was added. You should recieve an email
+            from Sophie in the next 48 hours either confirming the order or if
+            she has any questions.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              (click)="reload()"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
