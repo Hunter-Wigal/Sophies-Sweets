@@ -7,7 +7,7 @@
   </head>
 
   <body class="background">
-    <div class="overlay">
+    <div *ngIf="ordersDisabled" class="overlay">
       <div class="message">
         <h2>
           Unfortunately Sophie isn't taking orders right now due to working full

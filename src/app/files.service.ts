@@ -5,6 +5,7 @@ import { FirebaseStorage, StorageReference, getStorage, list, listAll, ref } fro
 import { getDownloadURL } from "firebase/storage";
 import { Firestore, getFirestore, addDoc, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { OrderModel } from "./order-page/order.model";
+import { firebaseConfig, DOC_SECRET_KEY } from "../environments/environment"
 
 @Injectable({ providedIn: 'root' })
 export class FilesService {
@@ -12,17 +13,6 @@ export class FilesService {
     db: Firestore;
 
     constructor() {
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD13AN3HiBPMEau5gDhQ-3SZUiwiLQ3psU",
-            authDomain: "sophiessweets-785d8.firebaseapp.com",
-            projectId: "sophiessweets-785d8",
-            storageBucket: "sophiessweets-785d8.appspot.com",
-            messagingSenderId: "560782189550",
-            appId: "1:560782189550:web:64f7ac6c33c7904ba264ff",
-            measurementId: "G-6DVTPZBEW7"
-        };
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
@@ -66,7 +56,8 @@ export class FilesService {
                 cake_flavor: order.cake_flavor,
                 macaron_flavor: order.macaron_flavor,
                 icing: order.icing,
-                comments: order.comments
+                comments: order.comments,
+                secret: DOC_SECRET_KEY
             });
 
             return "success";
@@ -90,6 +81,6 @@ export class FilesService {
     deleteOrder(id: string) {
         return deleteDoc(doc(this.db, "Orders", id));
       }
-    
+
 
 }

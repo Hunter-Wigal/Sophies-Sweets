@@ -14,6 +14,7 @@ import {
   signatureMacarons,
 } from './flavors';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } from 'src/environments/environment';
 // import * as $ from 'jquery';
 
 @Component({
@@ -55,6 +56,8 @@ export class OrderPageComponent implements OnInit {
   validPhone: boolean;
   validIcingFlavor: boolean;
 
+  ordersDisabled = false;
+
   constructor(private titleService: Title, private fs: FilesService) {
     this.titleService.setTitle('How to Order');
     this.macaronSelected = true;
@@ -72,9 +75,9 @@ export class OrderPageComponent implements OnInit {
     this.cupcakePrices = cupcakePrices;
     this.macaronPrices = macaronPrices;
 
-    this.templateID = 'template_nzsrmfb';
-    this.serviceID = 'service_9mshn9a';
-    this.publicKey = 'PK0Vl_xPRIQEajJy0';
+    this.templateID = EMAILJS_TEMPLATE_ID;
+    this.serviceID = EMAILJS_SERVICE_ID;
+    this.publicKey = EMAILJS_PUBLIC_KEY;
 
     this.validName = true;
     this.validEmail = true;
@@ -174,9 +177,8 @@ export class OrderPageComponent implements OnInit {
   } // End of select
 
   async addOrder(form: NgForm, formType: number) {
-    let unavailable = true;
 
-    if(unavailable){
+    if(this.ordersDisabled){
       window.alert("Sophie is currently unavailable for orders, please check back later!");
       return;
     }
@@ -330,20 +332,6 @@ export class OrderPageComponent implements OnInit {
     }
   } //End of addOrder
 
-  // sendEmail() {
-  //   var templateParams = {
-  //     from_name: "Hunter",
-  //     to_name: "Also Hunter",
-  //     message: "This is a test message to see if this service works.",
-  //     reply_to: "hunterwigal@gmail.com"
-  //   }
-  //   emailjs.send(this.serviceID, this.templateID, templateParams, this.publicKey)
-  //     .then(function (response) {
-  //       console.log('SUCCESS!', response.status, response.text);
-  //     }, function (error) {
-  //       console.log('FAILED...', error);
-  //     });
-  // }
 
   sendEmail(order: OrderModel) {
     var templateParams = {

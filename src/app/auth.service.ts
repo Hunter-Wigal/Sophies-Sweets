@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { initializeApp } from "firebase/app";
 import { Auth, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {Router} from '@angular/router';
+import {firebaseConfig} from "../environments/environment";
 
 
 @Injectable({ providedIn: 'root' })
@@ -10,16 +11,6 @@ export class AuthService {
     sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
     constructor( private router: Router) {
-        const firebaseConfig = {
-            apiKey: "AIzaSyD13AN3HiBPMEau5gDhQ-3SZUiwiLQ3psU",
-            authDomain: "sophiessweets-785d8.firebaseapp.com",
-            projectId: "sophiessweets-785d8",
-            storageBucket: "sophiessweets-785d8.appspot.com",
-            messagingSenderId: "560782189550",
-            appId: "1:560782189550:web:64f7ac6c33c7904ba264ff",
-            measurementId: "G-6DVTPZBEW7"
-        };
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
@@ -37,7 +28,7 @@ export class AuthService {
 
             this.auth.onAuthStateChanged((user) => {
                 let userSessionTimeout = null;
-            
+
                 if (user === null && userSessionTimeout) {
                   clearTimeout(userSessionTimeout);
                   userSessionTimeout = null;
